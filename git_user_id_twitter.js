@@ -1,30 +1,29 @@
 const puppeteer = require('puppeteer');
+const https = require('https');
 
 (async () => {
-    const browser = await puppeteer.launch();
+    const browser = await puppeteer.launch({ headless: false });
     const page = await browser.newPage();
 
     await page.setRequestInterception(true);
+    await page.setJavaScriptEnabled(true);
+    const username = '/elonmusk';
 
     const requests = [];
+    let map = {};
     page.on('request', request => {
-        requests.push(request.url());
+        console.log(request.url());
         request.continue();
+        if (request.url().includes('api.twitter.com/graphql') && request.url().includes('UserByScreenName')) {
+            https.get(request.url(), {headers: request.headers()}, (res) => {
+                res.on('data', (d) => {
+                    process.stdout.write(d);
+                });
+                res.on('end', () => {
+                    browser.close();
+                })
+            });
+        }
     });
-
-    const username = '/zakkabi';
     await page.goto('https://www.twitter.com' + username);
-
-    await browser.close();
-    const searchString = 'https://pbs.twimg.com/profile_banners/';
-    const foundRequest = requests.find(url => url.includes(searchString));
-
-    if (foundRequest) {
-        const idStartIndex = foundRequest.indexOf(searchString) + searchString.length;
-        const idEndIndex = foundRequest.indexOf('/', idStartIndex);
-        const id = foundRequest.substring(idStartIndex, idEndIndex);
-        console.log('Found:', id);
-    } else {
-        console.log('ID not found.');
-    }
 })();
