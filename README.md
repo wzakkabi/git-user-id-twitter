@@ -19,9 +19,9 @@ To use the Twitter User ID Finder, follow these steps:
 git clone https://github.com/wzakkabi/git-user-id-twitter.git
 ```
 3. Install dependencies using npm:
-4. ```shell
-   npm install puppeteer
-  ```
+```shell
+npm install puppeteer
+```
 ## Usage
 To use the Twitter User ID Finder, run the following command in your terminal:
 ```shell
