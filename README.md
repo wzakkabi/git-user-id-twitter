@@ -2,8 +2,12 @@
 
 ## Description
 The Twitter User ID Finder is a Node.js script that uses Puppeteer to scrape a Twitter user's profile page and retrieve their unique user ID using the Twitter API. The script extracts the user ID from the GraphQL response obtained by intercepting network requests made by the page.
-
+## mac
 <img width="955" alt="Screen Shot 2024-04-24 at 1 53 55 AM" src="https://github.com/wzakkabi/git-user-id-twitter/assets/114888333/2a57a83c-7f55-4703-b3cf-f7bcf7e1321c">
+
+## kali-lunix
+
+![lin](https://github.com/wzakkabi/git-user-id-twitter/assets/114888333/57f73748-b321-4bd1-a108-ec8b0b2fce62)
 
 ## Prerequisites
 - Node.js installed on your machine
