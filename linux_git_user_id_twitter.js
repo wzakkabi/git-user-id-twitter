@@ -33,4 +33,4 @@ async function getUserId(username) {
     }
 }
 
-getUserId('zakkabi');
+getUserId('IoQNqS8666');
